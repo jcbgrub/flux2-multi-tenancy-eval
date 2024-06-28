@@ -1,0 +1,27 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: jacob
+  namespace: apps
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  secretRef:
+    name: jacob-auth
+  url: https://github.com/jcbgrub/flux-depends-on.git
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: jacob
+  namespace: apps
+spec:
+  interval: 1m0s
+  path: ./
+  prune: false
+  serviceAccountName: jacob
+  sourceRef:
+    kind: GitRepository
+    name: jacob
