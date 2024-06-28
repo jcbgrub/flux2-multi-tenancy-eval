@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 2m
-  path: ./clusters/staging
+  path: "./apps"
   prune: true
   sourceRef:
     kind: GitRepository
